@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防止margin重叠</title>
+</head>
+<style>
+.box {
+ height: 700px;
+}
+
+/* .box > div {
+  height: 100%;
+} */
+
+.box-left {
+  width: 200px;
+  height: 300px;
+  float: left;
+  background-color: blue;
+}
+
+.box-right {
+  /* margin-left: 200px; */
+  /* float: right; */
+  /* width: calc(100% - 200px); */
+  height: 500px;
+  overflow: hidden;
+  background-color: red;
+}
+
+</style>
+<body>
+    <div class="box">
+        <div class="box-left"></div>
+        <div class="box-right"></div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <meta base=/landslideproject/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <style>
+            .ellipsis{   
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
+                width:130px;
+                background-color: red;
+            }
+            .mult_line_ellipsis{
+                overflow: hidden;
+                text-overflow:ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                width:130px;
+                background-color:cornflowerblue;
+            }
+        </style>
+    </head>
+    <body id="body">
+        <div class="ellipsis">
+            单行文本css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分
+        </div>
+
+        <div class="mult_line_ellipsis">
+            多行文本css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分css溢出部分
+        </div>
+        
+    </body>
+</html>
