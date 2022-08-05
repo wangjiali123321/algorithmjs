@@ -1,73 +1,44 @@
-async function a1 () {
-    console.log('a1 start')
-    await a2()
-    console.log('a1 end')
-}
-async function a2 () {
-    console.log('a2')
-}
-
-console.log('script start')
+console.log(1);
 
 setTimeout(() => {
-    console.log('setTimeout')
-}, 0)
+  console.log(2);
+  Promise.resolve().then(() => {
+    console.log(3)
+  });
+});
 
-Promise.resolve().then(() => {
-    console.log('promise1')
+new Promise((resolve, reject) => {
+  console.log(4)
+  resolve(5)
+}).then((data) => {
+  console.log(data);
+  
+  Promise.resolve().then(() => {
+    console.log(6)
+  }).then(() => {
+    console.log(7)
+    
+    setTimeout(() => {
+      console.log(8)
+    }, 0);
+  });
 })
 
-a1()
+setTimeout(() => {
+   console.log(9)
+}, 0);
+console.log(10)
 
-let promise2 = new Promise((resolve) => {
-    resolve('promise2.then')
-    console.log('promise2')
-})
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 4 10 2  5 3 6 7 9 8
 
-promise2.then((res) => {
-    console.log(res)
-    Promise.resolve().then(() => {
-        console.log('promise3')
-    })
-})
-console.log('script end')
-// console.log('start')
+正确：1，4，10，5，6，7，2，3，9，8 
+marcro: 
+setTimeout(() => {
+    console.log(9)
+ }, 0);
+ setTimeout(() => {
+    console.log(8)
+  }, 0);
 
-// Promise.resolve().then(() => {
-//     console.log('promise 1')
-// })
-
-// setTimeout(() => {
-//     console.log('setTimeout 1')
-//     Promise.resolve().then(() => {
-//         console.log('promise 2')
-//         Promise.resolve().then(() => {
-//             console.log('promise 3')
-//         }).then(() => {
-//             console.log('promise 4')
-//         })
-//     }).then(() => {
-//         setTimeout(() => {
-//             console.log('setTimeout 2')
-//             Promise.resolve().then(() => {
-//                 console.log('promise 5')
-//             })
-//         }, 0)
-//         console.log('promise 6')
-//     })
-//     console.log('setTimeout 2')
-// }, 0)
-
-// setTimeout(() => {
-//     console.log('setTimeout 3')
-//     Promise.resolve().then(() => {
-//         console.log('promise 7')
-//     })
-//     console.log('setTimeout 4')
-// }, 0)
-
-// Promise.resolve().then(() => {
-//     console.log('promise 8')
-// })
-
-
+micro: 

@@ -1,6 +1,6 @@
 const request = (url, option) =>
   new Promise((res) => {
-    setTimeout(() => {
+    setTimeout(() => { //ajax
       res({ data: option });
     }, 2000);
   });
