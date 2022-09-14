@@ -20,3 +20,12 @@ function flat(arr, depth = 1) {
    } , [])
    : arr
 }
+
+function flattenDeep(arr, deepLevel = Infinity) {
+  if (deepLevel < 1) return arr;
+  var needMoreDeep = deepLevel > 0;
+  return [].concat(...arr.map(item => {
+    return  Array.isArray(item) && needMoreDeep ? flattenDeep(item, deepLevel - 1) : item;
+  }));
+}
+console.log(flattenDeep([1,2,3,[4,[5,[6]]]], 2)); // [1, 2, 3, 4, 5, [6]]
