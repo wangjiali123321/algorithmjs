@@ -1,5 +1,4 @@
 
-// 221
 function getAllCombin(array,n,sum,temp){
   if(temp.length === n){
     if( temp.reduce((t,c)=>t+c) === sum ){
