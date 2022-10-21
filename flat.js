@@ -3,8 +3,9 @@ function getSum(total, num) {
   console.log(total,num)
   return total + Math.round(num);
 }
-console.log(numbers,numbers.reduce(getSum, 0))
+console.log(numbers,numbers.reduce(getSum))
 
+let arr = [12,34,[2121,2121,212],21,21]
 
 function flattenDeep(arr) {
   return Array.isArray(arr) ? arr.reduce( (acc, cur) => [...acc, ...flattenDeep(cur)] , [])

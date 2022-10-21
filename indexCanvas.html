@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta base="/edge/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>my-own-vuex</title>
+    <!-- <script src="./call.js"></script>
+    <script src="./apply.js"></script>
+    <script src="./bind.js"></script>  -->
+    <!-- <script src="./new.js"></script> -->
+    <!-- <script src="./两数之和.js"></script> -->
+    <!-- <script src="./大数add.js"></script> -->
+    <!-- <script src="./flat.js"></script> -->
+    <!-- <script src="./compareVersion.js"></script> -->
+    <script src="./LRU.js"></script>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+      const c = document.getElementById("myCanvas");
+      const ctx = c.getContext("2d");
+
+      ctx.fillStyle = "#999";
+      ctx.fillRect(0, 0, 400, 30);
+      // ctx.save(); // 保存当前状态 01
+
+      // ctx.fillStyle = "#09F";
+      // ctx.fillRect(0, 30, 400, 30);
+      // ctx.save(); // 保存当前状态 02
+
+      // ctx.fillStyle = "#333";
+      // ctx.fillRect(0, 60, 400, 30);
+
+      // ctx.restore(); // 取出保存的状态 02 恢复
+      // ctx.fillRect(0, 90, 400, 30);
+
+      // ctx.restore(); // 取出保存的状态 01 恢复
+      // ctx.fillRect(0, 120, 400, 30);
+    </script>
+  </body>
+</html>
