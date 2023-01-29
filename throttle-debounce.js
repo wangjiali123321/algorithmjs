@@ -71,3 +71,10 @@ function debounce(delay, callback) {//防抖
 
   return wrapper;
 }
+
+
+// const barWrapper = debounce(200, bar);
+
+// for (let i = 1; i < 10; i++) {
+//   setTimeout(barWrapper, i * 30);
+// }

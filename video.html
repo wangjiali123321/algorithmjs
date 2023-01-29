@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Video.js 加载失败切换其它视频源</title>
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+  </head>
+  <body>
+    <video id="my-video" class="video-js"></video>
+
+    <script>
+      // 测试用的视频源
+      const sources = [
+        {
+          src: 'https://aaa/.m3u8',
+          type: 'application/x-mpegURL'
+        },
+        {
+          src: 'https://bbb/.m3u8',
+          type: 'application/x-mpegURL'
+        },
+        // 第三个真实可用
+        {
+          src: 'https://live.unified-streaming.com/scte35/scte35.isml/.m3u8',
+          type: 'application/x-mpegURL'
+        }
+      ]
+
+      let index = 0 // 当前加载的视频源序号
+
+      var player = videojs('my-video', {
+        width: 500,
+        controls: true,
+        preload: 'auto',
+        autoplay: 'muted', // 实现视频自动播放的关键
+        sources: sources[index]
+      })
+
+      videojs.hook('beforeerror', (player, err) => {
+        console.log('hook - beforeerror', index, player.src(), err)
+        // Video.js 在切换/指定 source 后立即会触发一个 err=null 的错误，这里过滤一下
+        if (err !== null) {
+          player.src(sources[++index])
+        }
+
+        // 清除错误，避免 error 事件在控制台抛出错误
+        return null
+      })
+
+      player.ready(() => {
+      	// 丢失 source 事件处理
+        player.tech().on('retryplaylist', function () {
+          console.log('event - retryplaylist')
+          player.src(sources[++index])
+        })
+      })
+
+      // 其它可以观察进度的事件和钩子
+      // videojs.hook('error', (player, err) => {
+      //   console.log('hook - error')
+      //   return err
+      // })
+
+      // player.on('error', () => {
+      //   console.log('event - error')
+      // })
+      // player.on('loadeddata', () => {
+      //   console.log('event - loadeddata')
+      // })
+      // player.on('loadedmetadata', () => {
+      //   console.log('event - loadedmetadata')
+      // })
+      // player.on('loadstart', () => {
+      //   console.log('event - loadstart')
+      // })
+    </script>
+  </body>
+</html>
+
